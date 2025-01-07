@@ -3,6 +3,6 @@ matplotlib
 numpy
 pandas
 altair
-sklearn
+scikit-learn
 vega_datasets
 jupyterlite_sphinx
