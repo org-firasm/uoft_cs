@@ -12,16 +12,16 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    
+    - uses: actions/checkout@v4
+
     # Install dependencies
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.7
-        
+        python-version: "3.12"
+
     - name: cache installation
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.pythonLocation }}
         key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}
@@ -44,17 +44,17 @@ jobs:
 #       timeout-minutes: 15
       
     # Push to server
+
+    # Push to server
     - name: rsync and ssh
       env:
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        REMOTE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        REMOTE_HOST: ${{ secrets.FIRAS_REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.FIRAS_REMOTE_USER }}
+        REMOTE_KEY: ${{ secrets.FIRAS_SERVER_SSH_KEY }}
         LOCAL_DIR: "_build/html/"
       run: |
         mkdir ~/.ssh
-        touch ~/.ssh/id_rsa
         echo "$REMOTE_KEY" > ~/.ssh/id_rsa
         ssh-keyscan -H $REMOTE_HOST >> ~/.ssh/known_hosts
         chmod 600 ~/.ssh/id_rsa
-        rsync -avzr --delete $LOCAL_DIR $REMOTE_USER@$REMOTE_HOST:firas.moosvi.com/interviews/uoft_hcds
-        
+        rsync -avzr --delete $LOCAL_DIR $REMOTE_USER@$REMOTE_HOST:firas.moosvi.com/interviews/uoft_cs
