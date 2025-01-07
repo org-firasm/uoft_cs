@@ -1,4 +1,0 @@
-# Retrolite
-
-```{retrolite} workbook.ipynb
-```
