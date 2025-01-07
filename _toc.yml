@@ -1,0 +1,22 @@
+format: jb-book
+root: about/syllabus
+parts:
+- caption: Talk 1
+  chapters:
+  - file: notebooks/talk1/classification
+    title: Classification with Machine Learning
+    sections:
+    - file: class/week01/videos
+    - file: class/week01/Lecture
+    
+- caption: Talk 2
+  chapters:
+  - file: notebooks/talk2/Lecture
+    title: Importance of Exploratory Data Analysis
+  - file: notebooks/talk2/Workbook_instructions
+    title: Student Workbook
+    
+- caption: Course Feedback
+  chapters:
+  - file: about/feedback
+    title: Anonymous Feedback Form
